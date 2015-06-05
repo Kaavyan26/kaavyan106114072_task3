@@ -1,0 +1,68 @@
+<html>
+<body>
+<canvas id="rect1" width="1000" height="500" style="border:1px;" >
+<script>
+rect1.width=window.innerWidth;
+rect1.height=window.innerHeight;
+var cw=rect1.width;
+var ch=rect1.height;
+var c=document.getElementById("rect1");
+var ctx=c.getContext("2d");
+ctx.rect(0,0,cw,ch);
+ctx.fill();
+</script>
+<script>
+var x;
+var y;
+document.onkeydown=function(){move()};
+if(sessionStorage.x&&sessionStorage.y)
+{
+	 x=parseInt(sessionStorage.x);
+	 y=parseInt(sessionStorage.y);
+}
+else
+{
+	 x=100;
+	 y=100;
+ }
+ ctx.clearRect(x,y,50,50)
+function move(e){
+	e=e || window.event;
+ if (e.keyCode == '38') {
+        // up arrow
+	y=y-10;
+	ctx.rect(x,y,50,50);
+	ctx.fill();
+    }
+    else if (e.keyCode == '40') {
+        // down arrow
+	y=y+10;
+	ctx.rect(x,y,50,50);
+	ctx.fill();
+    }
+    else if (e.keyCode == '37') {
+       // left arrow
+	x=x-10;
+	ctx.rect(x,y,50,50);
+	ctx.fill();
+    }
+    else if (e.keyCode == '39') {
+       // right arrow
+	x=x+10;
+	ctx.rect(x,y,50,50);
+	ctx.fill();
+    }
+clear();
+}
+
+function clear(){
+
+ctx.clearRect(x,y,50,50);
+sessionStorage.x=x;
+sessionStorage.y=y;
+
+}
+</script>
+
+</body>
+</html>
